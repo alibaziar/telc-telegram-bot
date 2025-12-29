@@ -1,6 +1,7 @@
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/alibaziar/telc-telegram-bot.git
-git push -u origin main
+python-telegram-bot==20.7
+
+pytz==2024.1
+
+schedule==1.2.0
+
+python-dotenv==1.0.0
