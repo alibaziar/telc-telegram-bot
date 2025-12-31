@@ -371,7 +371,24 @@ def main():
     """اجرای ربات"""
     print("🤖 ربات در حال راه‌اندازی...")
     
-    application = Application.builder().token(BOT_TOKEN).build()
+    from telegram.request import HTTPXRequest
+
+# تنظیمات timeout بالاتر برای محیط ابری
+request = HTTPXRequest(
+    connection_pool_size=8,
+    connect_timeout=30.0,
+    read_timeout=30.0,
+    write_timeout=30.0,
+    pool_timeout=30.0
+)
+
+application = (
+    Application.builder()
+    .token(BOT_TOKEN)
+    .request(request)
+    .build()
+)
+
     
     application.add_handler(CommandHandler("start", start))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
